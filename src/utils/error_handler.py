@@ -430,6 +430,31 @@ def circuit_breaker(
     return decorator
 
 
+def error_context(**context_data):
+    """Context manager for adding error context information.
+
+    Args:
+        **context_data: Context information to add to errors.
+    """
+    class ErrorContext:
+        def __init__(self, context):
+            self.context = context
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, exc_type, exc_val, exc_tb):
+            if exc_type and issubclass(exc_type, Exception):
+                _global_error_handler.handle_error(
+                    exc_val,
+                    context=self.context,
+                    reraise=False
+                )
+            return False
+
+    return ErrorContext(context_data)
+
+
 def get_error_statistics() -> Dict[str, Any]:
     """Get global error statistics.
 

@@ -5,6 +5,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
+import torch.utils.data
 import numpy as np
 from typing import Dict, List, Optional, Tuple, Any
 from datetime import datetime
@@ -72,7 +73,26 @@ class RecognitionTrainer(LoggerMixin):
     def _create_data_loaders(self):
         """Create training and validation data loaders."""
         # Create training dataset
-        train_dataset = MonkeyDataset(self.train_dir, training=True)
+        full_dataset = MonkeyDataset(self.train_dir, training=True)
+
+        # Create validation split from training data if no separate validation directory
+        if self.val_dir and os.path.exists(self.val_dir):
+            # Use separate validation directory
+            train_dataset = full_dataset
+            val_dataset = MonkeyDataset(self.val_dir, training=False)
+        else:
+            # Split training data into train/val (80/20 split)
+            dataset_size = len(full_dataset)
+            val_size = int(0.2 * dataset_size)
+            train_size = dataset_size - val_size
+
+            train_dataset, val_dataset = torch.utils.data.random_split(
+                full_dataset, [train_size, val_size],
+                generator=torch.Generator().manual_seed(42)  # For reproducibility
+            )
+
+            self.logger.info(f"Created train/val split: {train_size}/{val_size} samples")
+
         train_loader = DataLoader(
             train_dataset,
             batch_size=self.batch_size,
@@ -80,16 +100,12 @@ class RecognitionTrainer(LoggerMixin):
             num_workers=4
         )
 
-        # Create validation dataset if directory exists
-        val_loader = None
-        if self.val_dir and os.path.exists(self.val_dir):
-            val_dataset = MonkeyDataset(self.val_dir, training=False)
-            val_loader = DataLoader(
-                val_dataset,
-                batch_size=self.batch_size,
-                shuffle=False,
-                num_workers=4
-            )
+        val_loader = DataLoader(
+            val_dataset,
+            batch_size=self.batch_size,
+            shuffle=False,
+            num_workers=4
+        )
 
         return train_loader, val_loader
 

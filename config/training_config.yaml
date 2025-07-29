@@ -19,7 +19,7 @@ training:
   device: "auto"                    # Device: auto, cpu, cuda
   batch_size: 32                    # Batch size
   learning_rate: 0.001              # Learning rate
-  epochs: 100                       # Training epochs
+  epochs: 10                      # Training epochs
   early_stopping_patience: 10       # Early stopping patience
   save_best_only: true              # Only save best model
 
