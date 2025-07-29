@@ -96,13 +96,14 @@ monkey-recognition/
 │   ├── visualization/            # Visualization tools
 │   └── utils/                    # Utility functions
 ├── scripts/                      # Executable scripts
-│   ├── train_model.py           # Training script
-│   ├── evaluate_model.py        # Evaluation script
-│   └── run_inference.py         # Inference script
+│   ├── train_model.py            # Training script
+│   ├── evaluate_model.py         # Evaluation script
+│   └── run_inference.py          # Inference script
 ├── config/                       # Configuration files
-│   └── training_config.yaml     # Training configuration
+│   └── training_config.yaml      # Training configuration
 ├── models/                       # Trained models (created after training)
 ├── experiments/                  # Experiment tracking (created after training)
+├── logs/                         # Logs (created after training)
 └── requirements.txt              # Dependencies
 ```
 
@@ -122,7 +123,7 @@ training:
   device: "auto"                    # Device: auto, cpu, cuda
   batch_size: 32                    # Batch size
   learning_rate: 0.001              # Learning rate
-  epochs: 100                       # Training epochs
+  epochs: 10                        # Training epochs
 
 # Model configuration
 model:
