@@ -1,0 +1,1 @@
+"""Face detection components using YOLOv8."""

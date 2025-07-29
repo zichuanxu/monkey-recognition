@@ -1,0 +1,5 @@
+data/
+logs/
+experiments/
+models/
+__pycache__/

@@ -1,0 +1,44 @@
+# Training Configuration for Monkey Face Recognition System
+
+# Data configuration
+data:
+  train_dir: "data/train_Magface"   # Training data directory (organized by monkey ID)
+  test_dir: "data/test_image"            # Test data directory (for evaluation)
+  image_size: 224                   # Input image size for recognition model
+
+  # Data augmentation for training
+  augmentation:
+    horizontal_flip: true           # Random horizontal flip
+    rotation: 15                    # Random rotation (degrees)
+    brightness: 0.2                 # Brightness adjustment range
+    contrast: 0.2                   # Contrast adjustment range
+    normalize: true                 # Normalize to ImageNet stats
+
+# Training configuration
+training:
+  device: "auto"                    # Device: auto, cpu, cuda
+  batch_size: 32                    # Batch size
+  learning_rate: 0.001              # Learning rate
+  epochs: 100                       # Training epochs
+  early_stopping_patience: 10       # Early stopping patience
+  save_best_only: true              # Only save best model
+
+# Recognition model configuration
+model:
+  backbone: "resnet50"              # Recognition backbone
+  embedding_size: 512               # Feature embedding size
+  margin_loss: "arcface"            # Margin loss type
+  margin: 0.5                       # Margin parameter
+  scale: 64                         # Scale parameter
+  dropout: 0.5                      # Dropout rate
+  pretrained: true                  # Use pretrained backbone
+
+# Evaluation configuration
+evaluation:
+  confidence_thresholds: [0.3, 0.5, 0.7, 0.9]  # Thresholds to evaluate
+  similarity_threshold: 0.6         # Default similarity threshold
+
+# Logging configuration
+logging:
+  level: "INFO"                     # Log level
+  save_frequency: 10                # Save metrics every N epochs
