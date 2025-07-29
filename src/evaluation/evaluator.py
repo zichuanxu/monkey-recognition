@@ -19,8 +19,8 @@ from ..utils.logging import LoggerMixin
 from ..utils.error_handler import handle_errors, error_context
 from ..utils.exceptions import ValidationError, ConfigurationError
 from ..utils.data_structures import BoundingBox, MonkeyDetection
-from ..utils.validators import validate_directory_path, validate_confidence_threshold
-from ..inference.recognizer import MonkeyFaceRecognizer
+from ..utils.validators import InputValidator
+from ..recognition.recognizer import MonkeyFaceRecognizer
 
 
 class DetectionEvaluator(LoggerMixin):
@@ -414,7 +414,7 @@ class ComprehensiveEvaluator(LoggerMixin):
             output_dir: Directory to save evaluation results.
         """
         self.recognizer = recognizer
-        self.test_data_dir = validate_directory_path(test_data_dir)
+        self.test_data_dir = InputValidator.validate_directory_path(test_data_dir)
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -428,7 +428,7 @@ class ComprehensiveEvaluator(LoggerMixin):
 
         self._load_test_data()
 
-    @handle_errors(context="loading test data", reraise=True)
+    @handle_errors(reraise=True)
     def _load_test_data(self) -> None:
         """Load test data from directory structure."""
         test_dir = Path(self.test_data_dir)
@@ -466,7 +466,7 @@ class ComprehensiveEvaluator(LoggerMixin):
 
         self.logger.info(f"Loaded {len(self.test_images)} test images from {len(set(self.ground_truth_data[img]['monkey_id'] for img in self.test_images))} monkey classes")
 
-    @handle_errors(context="running comprehensive evaluation", reraise=True)
+    @handle_errors(reraise=True)
     def evaluate(
         self,
         confidence_thresholds: List[float] = None,
