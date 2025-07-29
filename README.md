@@ -25,8 +25,8 @@ Then create a dir called `data` and put them in the  `data` dir.
 1. **Clone the repository:**
 
    ```bash
-   git clone <repository-url>
-   cd monkey-face-recognition
+   git clone https://github.com/zichuanxu/monkey-recognition.git
+   cd monkey-recognition
    ```
 2. **Install dependencies:**
 
