@@ -13,13 +13,12 @@ This system uses deep learning to identify individual monkeys from facial featur
 Get the data through the dropbox link on CLE:
 
 ```
-
 Constructing a monkey identification model
 • Training data + Test data
-• Dropbox(25GBあるので注意):
+• Dropbox(25GB):
 ```
 
-Then create a dir called ` data` and put them in the  `data` dir.
+Then create a dir called `data` and put them in the  `data` dir.
 
 ### Installation
 
@@ -134,10 +133,10 @@ model:
 
 ## Training Process
 
-1. **Data Preparation**: Organize images by monkey ID in `data/train_Magface/`
+1. **Data Preparation**: Organize images by monkey ID in `/data/train_Magface/`
 2. **Model Training**: Run training script to train ArcFace recognition model
 3. **Feature Database**: System creates feature database for known monkeys
-4. **Evaluation**: Test model performance on `test_image/` directory
+4. **Evaluation**: Test model performance on `/data/test_image/` directory
 
 ## Performance Metrics
 
