@@ -110,6 +110,7 @@ monkey-recognition/
 ├── models/                       # Trained models (created after training)
 ├── experiments/                  # Experiment tracking (created after training)
 ├── logs/                         # Logs (created after training)
+├── results_visualization/        # Visulization of results (created after test and visualization)
 └── requirements.txt              # Dependencies
 ```
 
