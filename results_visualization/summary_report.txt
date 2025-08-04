@@ -1,0 +1,31 @@
+
+=== MONKEY RECOGNITION MODEL - TEST RESULTS SUMMARY ===
+
+Overall Performance:
+- Total Test Images: 324
+- Overall Accuracy: 0.849 (84.9%)
+- Overall Precision: 0.880
+- Overall Recall: 0.849
+- Overall F1-Score: 0.853
+
+Per-Class Analysis:
+- Total Classes: 38
+- Average F1-Score: 0.790 ¡À 0.195
+- Perfect Performers (F1=1.0): 2 classes
+- Poor Performers (F1<0.5): 1 classes
+
+Data Distribution:
+- Total Test Samples: 324
+- Average Samples per Class: 8.5
+- Min Samples per Class: 1
+- Max Samples per Class: 22
+
+Best Performing Classes:
+- Barisa'71'84'98'13: F1=1.000 (Support: 10)
+- Tera'68'73'85'96'02: F1=1.000 (Support: 8)
+- Pet'88'98'10: F1=0.960 (Support: 13)
+
+Worst Performing Classes:
+- Pet'92'99'05: F1=0.000 (Support: 1)
+- Barisa'71'84'96'03: F1=0.500 (Support: 3)
+- Barisa'71'85'96'09: F1=0.500 (Support: 1)

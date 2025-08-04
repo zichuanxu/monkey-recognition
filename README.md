@@ -82,6 +82,12 @@ python scripts/evaluate_model.py --config config/training_config.yaml --output e
 python scripts/run_inference.py --image path/to/image.jpg --output results/
 ```
 
+### Visualization
+
+```bash
+python visualize_results.py
+```
+
 ## Project Structure
 
 ```
