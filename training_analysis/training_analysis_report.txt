@@ -1,0 +1,23 @@
+
+=== MONKEY RECOGNITION MODEL - TRAINING ANALYSIS REPORT ===
+
+Model Information:
+- Model File: models/recognition/monkey_recognition_model_best.pt
+- Model Status: Error Loading
+
+Dataset Analysis:
+- Training Data Directory: data\train_Magface
+- Total Classes: 121
+- Total Training Images: 115,061
+- Average Images per Class: 950.9
+- Standard Deviation: 1234.1
+- Min Images per Class: 12
+- Max Images per Class: 4708
+- Data Imbalance Ratio: 392.3:1
+
+Data Balance Distribution:
+- Very Low (1-10 images): 0 classes
+- Low (11-50 images): 4 classes
+- Medium (51-200 images): 31 classes
+- High (201-500 images): 36 classes
+- Very High (500+ images): 50 classes
